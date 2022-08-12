@@ -18,7 +18,10 @@ app.use(express.static('public'));
 
 //rendering the index.hbs file
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        name: 'John Doe',
+        title: 'Mc Macdonas',
+    } );
 });
 
 app.get('/generic', (req, res) => {
