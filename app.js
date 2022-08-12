@@ -2,12 +2,13 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import hbs from 'hbs';
+import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express()
-const port = 3000;
+const port = process.env.PORT || 8080; // Configurar el puerto para desplegar application
 
 // Handlebars
 app.set('view engine', 'hbs');
