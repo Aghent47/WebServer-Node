@@ -8,12 +8,17 @@ const __dirname = path.dirname(__filename);
 const app = express()
 const port = 3000;
 
+
+// TODO: import hbs from 'hbs';
+app.set('view engine', 'hbs');
+
 // Middleware
 
 app.use(express.static('public'));
 
+//rendering the index.hbs file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.render('home');
 });
 
 app.get('/generic', (req, res) => {
