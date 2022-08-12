@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import hbs from 'hbs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,9 +9,9 @@ const __dirname = path.dirname(__filename);
 const app = express()
 const port = 3000;
 
-
-// TODO: import hbs from 'hbs';
+// Handlebars
 app.set('view engine', 'hbs');
+hbs.registerPartials( __dirname + '/views/partials');
 
 // Middleware
 
@@ -25,12 +26,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname + '/public/generic.html');
+    res.render('generic', {
+        name: 'John Doe',
+        title: 'Mc Macdonas',
+    } );
 });
 
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname + '/public/elements.html');
+    res.render('elements', {
+        name: 'John Doe',
+        title: 'Mc Macdonas',
+    } );
 });
+
 
 app.get('*', (req, res) => {
     res.sendFile( __dirname + '/public/404.html');
